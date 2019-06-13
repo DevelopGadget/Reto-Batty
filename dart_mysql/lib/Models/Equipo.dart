@@ -1,14 +1,14 @@
 import 'package:aqueduct/aqueduct.dart';
 import 'package:dart_mysql/dart_mysql.dart';
 
-class Equipo extends ManagedObject<_Equipo> implements _Equipo {}
+class Equipo extends ManagedObject<Equipos> implements Equipos {}
 
-class _Equipo {
+class Equipos {
   @primaryKey
   int id;
 
   @Column(nullable: false, databaseType: ManagedPropertyType.string)
-  String name;
+  String nameteam;
 
   @Column(nullable: false, databaseType: ManagedPropertyType.string)
   String stadium;

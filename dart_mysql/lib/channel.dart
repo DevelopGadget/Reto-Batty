@@ -6,6 +6,8 @@ import 'dart_mysql.dart';
 /// Override methods in this class to set up routes and initialize services like
 /// database connections. See http://aqueduct.io/docs/http/channel/.
 class DartMysqlChannel extends ApplicationChannel {
+  ManagedContext context;
+
   /// Initialize services in this method.
   ///
   /// Implement this method to initialize services, read values from [options]
@@ -14,8 +16,16 @@ class DartMysqlChannel extends ApplicationChannel {
   /// This method is invoked prior to [entryPoint] being accessed.
   @override
   Future prepare() async {
+    final dataModel = ManagedDataModel.fromCurrentMirrorSystem();
+    final psc = PostgreSQLPersistentStore.fromConnectionInfo(
+        'hpkilqdj',
+        'M4MTeHECtf0B28ZjMYFGMnnPBj5HS7Fi',
+        'motty.db.elephantsql.com',
+        5432,
+        'hpkilqdj');
+    context = ManagedContext(dataModel, psc);
     logger.onRecord.listen(
-        (rec) => print("$rec ${rec.error ?? ""} ${rec.stackTrace ?? ""}"));
+        (rec) => print('$rec ${rec.error ?? ''} ${rec.stackTrace ?? ''}'));
   }
 
   /// Construct the request channel.
@@ -30,7 +40,7 @@ class DartMysqlChannel extends ApplicationChannel {
 
     // Prefer to use `link` instead of `linkFunction`.
     // See: https://aqueduct.io/docs/http/request_controller/
-    router.route("/Equipos").link(() => EquipoController());
+    router.route('/Equipos/[:id]').link(() => EquipoController(context));
 
     return router;
   }

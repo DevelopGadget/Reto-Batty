@@ -3,13 +3,15 @@ import 'package:dart_mysql/Models/Equipo.dart';
 import 'package:dart_mysql/dart_mysql.dart';
 
 class EquipoController extends ResourceController {
-  //EquipoController(this.context);
+  EquipoController(this.context);
 
-  final ManagedContext context = null;
+  final ManagedContext context;
 
   @Operation.get()
   Future<Response> getAll() async {
-    return Response.ok({'Hola': 'Mundo'});
+    final equiposQuery = Query<Equipo>(context);
+    final equipos = await equiposQuery.fetch();
+    return Response.ok(equipos);
   }
 
   @Operation.get('id')
