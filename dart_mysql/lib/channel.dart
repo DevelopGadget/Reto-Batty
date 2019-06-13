@@ -1,3 +1,4 @@
+import 'Controllers/EquipoController.dart';
 import 'dart_mysql.dart';
 
 /// This type initializes an application.
@@ -13,7 +14,8 @@ class DartMysqlChannel extends ApplicationChannel {
   /// This method is invoked prior to [entryPoint] being accessed.
   @override
   Future prepare() async {
-    logger.onRecord.listen((rec) => print("$rec ${rec.error ?? ""} ${rec.stackTrace ?? ""}"));
+    logger.onRecord.listen(
+        (rec) => print("$rec ${rec.error ?? ""} ${rec.stackTrace ?? ""}"));
   }
 
   /// Construct the request channel.
@@ -28,11 +30,7 @@ class DartMysqlChannel extends ApplicationChannel {
 
     // Prefer to use `link` instead of `linkFunction`.
     // See: https://aqueduct.io/docs/http/request_controller/
-    router
-      .route("/example")
-      .linkFunction((request) async {
-        return Response.ok({"key": "value"});
-      });
+    router.route("/Equipos").link(() => EquipoController());
 
     return router;
   }

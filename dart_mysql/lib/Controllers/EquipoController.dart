@@ -3,9 +3,9 @@ import 'package:dart_mysql/Models/Equipo.dart';
 import 'package:dart_mysql/dart_mysql.dart';
 
 class EquipoController extends ResourceController {
-  EquipoController(this.context);
+  //EquipoController(this.context);
 
-  final ManagedContext context;
+  final ManagedContext context = null;
 
   @Operation.get()
   Future<Response> getAll() async {
