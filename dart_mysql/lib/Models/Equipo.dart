@@ -4,7 +4,10 @@ import 'package:dart_mysql/dart_mysql.dart';
 class Equipo extends ManagedObject<Equipos> implements Equipos {}
 
 class Equipos {
-  @primaryKey
+  @Column(
+      databaseType: ManagedPropertyType.integer,
+      primaryKey: true,
+      autoincrement: true)
   int id;
 
   @Column(nullable: false, databaseType: ManagedPropertyType.string)
