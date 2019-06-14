@@ -26,7 +26,9 @@ class EquipoController extends ResourceController {
 
   @Operation.post()
   Future<Response> post(@Bind.body() Equipo data) async {
-    return Response.ok({'Hola': 'Mundo'});
+    final query = Query<Equipo>(context)..values = data;
+    final insert = await query.insert();
+    return Response.ok(insert);
   }
 
   @Operation.put('id')
@@ -37,6 +39,8 @@ class EquipoController extends ResourceController {
 
   @Operation.delete('id')
   Future<Response> delete(@Bind.path('id') int id) async {
-    return Response.ok({'Hola': 'Mundo'});
+    final query = Query<Equipo>(context)..where((u) => u.id).equalTo(id);
+    final delete = await query.delete();
+    return Response.ok(delete);
   }
 }

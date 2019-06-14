@@ -14,8 +14,8 @@ class Equipos {
   String stadium;
 
   @Column(nullable: false, databaseType: ManagedPropertyType.string)
-  String urlShield;
+  String urlshield;
 
   @Column(nullable: false, databaseType: ManagedPropertyType.string)
-  String urlStadium;
+  String urlstadium;
 }
