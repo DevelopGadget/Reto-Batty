@@ -16,7 +16,12 @@ class EquipoController extends ResourceController {
 
   @Operation.get('id')
   Future<Response> getById(@Bind.path('id') int id) async {
-    return Response.ok({'Hola': 'Mundo'});
+    final equipoQuery = Query<Equipo>(context)..where((h) => h.id).equalTo(id);
+    final equipo = await equipoQuery.fetchOne();
+    if (equipo == null) {
+      return Response.notFound();
+    }
+    return Response.ok(equipo);
   }
 
   @Operation.post()
