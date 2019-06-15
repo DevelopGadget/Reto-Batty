@@ -1,13 +1,11 @@
 package comspring.mongodb.DemoMongoDB.Models;
 
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 
 public class Hero {
 
     @Id
     public String _id;
-
     public String Name;
     public String Alias;
     public String Role;

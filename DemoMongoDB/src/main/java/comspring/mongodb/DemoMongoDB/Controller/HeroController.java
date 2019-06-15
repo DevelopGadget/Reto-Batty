@@ -6,7 +6,6 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,7 +20,7 @@ import comspring.mongodb.DemoMongoDB.Repositories.HeroRepository;
  * HeroController
  */
 @RestController
-@RequestMapping(value = "/Hero")
+@RequestMapping("Heroes")
 public class HeroController {
 
     @Autowired
@@ -54,6 +53,7 @@ public class HeroController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void putHero(@PathVariable("id") String id) {
+        System.out.println(id);
         HeroService.deleteById(id);
     }
 
