@@ -53,7 +53,6 @@ public class HeroController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void putHero(@PathVariable("id") String id) {
-        System.out.println(id);
         HeroService.deleteById(id);
     }
 
